@@ -1,0 +1,14 @@
+# device_name = "Razer Razer Ornata V3 X"
+# device_name = "HOLTEK USB-HID Keyboard"
+device_name = "AT Translated Set 2 keyboard"
+
+
+[[dual_role]]
+input = "KEY_CAPSLOCK"
+hold = ["KEY_LEFTCTRL"]
+tap = ["KEY_ESC"]
+
+[[dual_role]]
+input = "KEY_RIGHTSHIFT"
+hold = ["KEY_RIGHTSHIFT"]
+tap = ["KEY_ENTER"]

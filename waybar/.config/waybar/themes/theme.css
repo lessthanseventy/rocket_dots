@@ -1,0 +1,6 @@
+@define-color bar-bg rgba(0, 0, 0, 1);
+
+@define-color main-bg #000000;
+@define-color text-fg #33FF00;
+@define-color accent-fg #FFB000;
+@define-color secondary-fg #b889f4;

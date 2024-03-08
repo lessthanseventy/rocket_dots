@@ -1,0 +1,287 @@
+{
+
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "height": 18,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+
+
+	"modules-left": ["custom/padd","custom/l_end","hyprland/workspaces","hyprland/window","custom/r_end","custom/l_end","custom/media","custom/r_end","custom/padd"],
+	"modules-center": ["custom/padd","custom/l_end","cava","custom/padd","custom/time","custom/weather","clock","custom/padd","cava#right","custom/r_end","custom/padd"],
+	"modules-right": ["custom/padd","custom/l_end","cpu","memory","custom/gpuinfo","custom/r_end","custom/l_end","network","bluetooth","custom/updates","custom/padd","pulseaudio","pulseaudio#microphone","custom/headsetctl","custom/padd","custom/cliphist","tray","custom/r_end","custom/padd"],
+
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "active-only": false,
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch split-workspace r-1",
+        "on-scroll-down": "hyprctl dispatch split-workspace r+1",
+    },
+
+    "hyprland/window": {
+        "format": " 󰖲 {}",
+        "align": 0,
+        "separate-outputs": true,
+        "rewrite": {
+            "andrew@:(.*)": "  $1",
+            "(.*) — Dolphin": " 🗁  $1",
+            "(.*)Spotify Premium": " 󰓇 Spotify",
+            "(.*)Steam": " 󰓓 Steam"
+        },
+        "max-length": 25,
+        "min-length": 25
+    },
+
+   "custom/media": {
+     "format": "{icon} {}",
+     "escape": true,
+     "tooltip": false,
+     "return-type": "json",
+     "max-length": 40,
+     "on-click": "playerctl play-pause",
+     "on-click-right": "playerctl next",
+     "smooth-scrolling-threshold": 1,
+     "on-scroll-up": "playerctld shift",
+     "on-scroll-down": "playerctld shift",
+     "on-click-middle": "spt playback --like && notify-send 'Song liked!'",
+     "format-icons": {
+       "spotify": "󰓇 ",
+       "firefox": "󰈹 ",
+       "chromium": "󰊯 ",
+       "kdeconnect": " ",
+       "default": "🎵 "
+     },
+     "exec": " $HOME/.config/waybar/scripts/waybar-now-playing/waybar-now-playing.py 2> /dev/null",
+     "exec-on-event": false
+   },
+
+    "custom/headsetctl": {
+        "exec": " ~/.config/waybar/scripts/headsetctl.sh",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 10
+    },
+
+    "cava": {
+      //"cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+      "exec": "sleep 3 && cava -p /home/andrew/.config/cava/cava.conf | sed -u 's/;//g;s/0/0/g;s/1/1/g;s/2/2/g;s/3/3/g;s/4/4/g;s/5/5/g;s/6/6/g;s/7/7/g;s/8/8/g;s/9/9/g;'",
+      "framerate": 30,
+      "autosens": 1,
+      //"sensitivity": 100,
+      "bars": 14,
+      "lower_cutoff_freq": 50,
+      "higher_cutoff_freq": 10000,
+      "method": "pulse",
+      "source": "auto",
+      "stereo": false,
+      "reverse": false,
+      "bar_delimiter": 0,
+      "monstercat": false,
+      "waves": true,
+      "noise_reduction": 0.77,
+      "input_delay": 2,
+      "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+      "actions": {
+        "on-click-right": "mode"
+      }
+    },
+
+    "cava#right": {
+      "exec": "sleep 3 && cava -p /home/andrew/.config/cava/cava.conf | sed -u 's/;//g;s/0/0/g;s/1/1/g;s/2/2/g;s/3/3/g;s/4/4/g;s/5/5/g;s/6/6/g;s/7/7/g;s/8/8/g;s/9/9/g;'",
+      "framerate": 30,
+      "autosens": 1,
+      "bars": 14,
+      "lower_cutoff_freq": 50,
+      "higher_cutoff_freq": 10000,
+      "method": "pulse",
+      "source": "auto",
+      "stereo": false,
+      "reverse": true,
+      "bar_delimiter": 0,
+      "monstercat": false,
+      "waves": true,
+      "noise_reduction": 0.77,
+      "input_delay": 2,
+      "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+      "actions": {
+        "on-click-right": "mode"
+      }
+    },
+
+    "custom/time": {
+      "format": " {}",
+      "tooltip": false,
+      "exec": "date +%H:%M:%S",
+      "interval": 1
+    },
+
+    "clock": {
+        "format": "{:%d/%m/%y} 󰃭",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b>{}</b></span>"
+            }
+        }
+    },
+
+    "custom/weather": {
+        "format": " {}° ",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "wttrbar --fahrenheit --location Pagosa_Springs --main-indicator temp_F",
+        "return-type": "json"
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": "󰍛 {usage}%",
+        "format-alt": "{icon0}{icon1}{icon2}{icon3}",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "󰾆 {percentage}%",
+        "format-alt": "󰾅 {used}GB",
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": " {used:0.1f}GB/{total:0.1f}GB"
+    },
+
+    "custom/gpuinfo": {
+        "exec": " ~/.config/hypr/scripts/gpuinfo.sh",
+        "return-type": "json",
+        "format": " {}",
+        "interval": 5, // once every 5 seconds
+        "tooltip": true,
+        "max-length": 1000
+    },
+
+    "network": {
+        "format-wifi": "󰤢 {signalStrength}%",
+        "format-ethernet": "󱘖 Wired",
+        "tooltip-format": "󰤢 {essid} 󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-linked": "󱘖 {ifname} (No IP)",
+        "format-disconnected": " Disconnected",
+        "interval": 5
+    },
+
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "", // an empty format will hide the module
+        "format-connected": " {num_connections}",
+        "tooltip-format": " {device_alias}",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": " {device_alias}"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}",
+        "format-muted": "󰝟",
+        "on-click": "pavucontrol -t 3",
+        "on-click-middle": "~/.config/hypr/scripts/volumecontrol.sh -o m",
+        "on-scroll-up": "~/.config/hypr/scripts/volumecontrol.sh -o i",
+        "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh -o d",
+        "tooltip-format": "{icon} {desc} // {volume}%",
+        "scroll-step": 1,
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰋋",
+            "headset": "󰋎",
+            "phone": "",
+            "portable": "",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        }
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}",
+        "format-source-muted": " ",
+        "on-click": "pavucontrol -t 4",
+        "on-click-middle": "~/.config/hypr/scripts/volumecontrol.sh -i m",
+        "on-scroll-up": "~/.config/hypr/scripts/volumecontrol.sh -i i",
+        "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh -i d",
+        "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
+        "scroll-step": 1
+    },
+
+    "custom/updates": {
+        "exec": "~/.config/hypr/scripts/systemupdate.sh",
+        "return-type": "json",
+        "format": "󰮯 {}",
+        "on-click": "~/.config/hypr/scripts/systemupdate.sh up",
+        "interval": 86400, // once every day
+        "tooltip": true
+    },
+
+    "tray": {
+        "icon-size": 12,
+        "spacing": 5
+    },
+
+    "custom/cliphist": {
+        "format": "{}",
+        "exec": "echo ; echo 󰅇 clipboard history",
+        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
+        "on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+
+    "custom/l_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/r_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/sl_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/sr_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/rl_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/rr_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/padd": {
+        "format": "  ",
+        "interval" : "once",
+        "tooltip": false
+    }
+
+}
