@@ -17,7 +17,7 @@
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
-        "active-only": false,
+        "active-only": true,
         "on-click": "activate",
         "on-scroll-up": "hyprctl dispatch split-workspace r-1",
         "on-scroll-down": "hyprctl dispatch split-workspace r+1",
