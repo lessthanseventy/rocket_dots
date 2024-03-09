@@ -1,0 +1,22 @@
+os:
+  openCommand: "nvim --server ~/.cache/nvim/server.pipe --remote-tab {{filename}}"
+
+gui:
+  expandFocusedSidePanel: true
+  showFileTree: false
+  theme:
+    activeBorderColor:
+      - yellow
+      - bold
+    inactiveBorderColor:
+      - white
+    selectedLineBgColor:
+      - reverse
+    selectedRangeBgColor:
+      - reverse
+
+git:
+  paging:
+    colorArg: always
+    pager: diff-so-fancy
+  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=oneline {{branchName}} --"
