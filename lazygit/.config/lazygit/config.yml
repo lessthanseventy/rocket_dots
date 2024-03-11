@@ -1,5 +1,5 @@
 os:
-  openCommand: "nvim --server ~/.cache/nvim/server.pipe --remote-tab {{filename}}"
+  editPreset: 'nvim-remote'
 
 gui:
   expandFocusedSidePanel: true

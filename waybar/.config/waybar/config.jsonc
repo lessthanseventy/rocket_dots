@@ -9,9 +9,9 @@
     "gtk-layer-shell": true,
 
 
-	"modules-left": ["custom/padd","custom/l_end","hyprland/workspaces","hyprland/window","custom/r_end","custom/l_end","custom/media","custom/r_end","custom/padd"],
+	"modules-left": ["custom/l_end","hyprland/workspaces","hyprland/window","custom/r_end","custom/l_end","custom/media","custom/r_end"],
 	"modules-center": ["custom/padd","custom/l_end","cava","custom/padd","custom/time","custom/weather","clock","custom/padd","cava#right","custom/r_end","custom/padd"],
-	"modules-right": ["custom/padd","custom/l_end","cpu","memory","custom/gpuinfo","custom/r_end","custom/l_end","network","bluetooth","custom/updates","custom/padd","pulseaudio","pulseaudio#microphone","custom/headsetctl","custom/padd","custom/cliphist","tray","custom/r_end","custom/padd"],
+	"modules-right": ["custom/padd","custom/l_end","cpu","memory","custom/gpuinfo","battery","custom/r_end","custom/l_end","network","bluetooth","custom/updates","custom/padd","pulseaudio","pulseaudio#microphone","custom/headsetctl","custom/padd","custom/cliphist","tray","custom/r_end","custom/padd"],
 
 
     "hyprland/workspaces": {
@@ -19,8 +19,11 @@
         "all-outputs": false,
         "active-only": true,
         "on-click": "activate",
-        "on-scroll-up": "hyprctl dispatch split-workspace r-1",
-        "on-scroll-down": "hyprctl dispatch split-workspace r+1",
+        "on-scroll-up": "hyprctl dispatch workspace r-1",
+        "on-scroll-down": "hyprctl dispatch workspace r+1",
+        "persistent-workspaces": {
+           "*": 5, // 5 workspaces by default on every monitor
+         }
     },
 
     "hyprland/window": {
@@ -160,6 +163,18 @@
         "tooltip-format": " {used:0.1f}GB/{total:0.1f}GB"
     },
 
+    "battery": {
+      "bat": "BAT0",
+      "interval": 60,
+      "states": {
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{icon} {capacity}%",
+      "format-icons": ["󰂄", "󱊡", "󱊢", "󱊣"],
+      "max-length": 25
+    },
+
     "custom/gpuinfo": {
         "exec": " ~/.config/hypr/scripts/gpuinfo.sh",
         "return-type": "json",
@@ -208,7 +223,7 @@
 
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": " {volume}",
+        "format-source": "󰍬 {volume}",
         "format-source-muted": " ",
         "on-click": "pavucontrol -t 4",
         "on-click-middle": "~/.config/hypr/scripts/volumecontrol.sh -i m",
