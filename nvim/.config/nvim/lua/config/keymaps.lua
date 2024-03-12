@@ -71,7 +71,7 @@ keymap(
 )
 keymap("t", "<C-j><C-k>", "<C-\\><C-n>", opts)
 
-keymap("n", "<leader>gg", "<cmd>lua require('utils').LAZYGIT_TOGGLE()<cr>", { desc = "LazyGit" })
+-- keymap("n", "<leader>gg", "<cmd>lua require('utils').LAZYGIT_TOGGLE()<cr>", { desc = "LazyGit" })
 keymap("n", "<leader>gbf", "<cmd>LazyGitFilterCurrentFile<cr>", { desc = "LazyGit current file" })
 
 --Window management
