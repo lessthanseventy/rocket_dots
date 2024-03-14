@@ -69,9 +69,7 @@ return {
       -- Only one of these is needed, not both.
       "ibhagwan/fzf-lua", -- optional
     },
-    config = {
-      kind = "split",
-    },
+    config = true,
   },
 
   {

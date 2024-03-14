@@ -170,9 +170,23 @@ return {
     },
   },
 
+  -- Session saving
   {
     "stevearc/resession.nvim",
     lazy = false,
     config = true,
+  },
+
+  -- Yazi file manager
+  {
+    "DreamMaoMao/yazi.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim",
+    },
+
+    keys = {
+      { "<leader>ty", "<cmd>Yazi<CR>", desc = "Toggle Yazi" },
+    },
   },
 }
