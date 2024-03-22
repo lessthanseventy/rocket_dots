@@ -205,12 +205,8 @@
     "pulseaudio": {
         "format": "{icon} {volume}",
         "format-muted": "󰝟",
-        "on-click": "pavucontrol -t 3",
-        "on-click-middle": "~/.config/hypr/scripts/volumecontrol.sh -o m",
-        "on-scroll-up": "~/.config/hypr/scripts/volumecontrol.sh -o i",
-        "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh -o d",
+        "on-click": "pypr toggle volume",
         "tooltip-format": "{icon} {desc} // {volume}%",
-        "scroll-step": 1,
         "format-icons": {
             "headphone": "󰋋",
             "hands-free": "󰋋",
